@@ -1,0 +1,7 @@
+/*!
+ * \defgroup block GNU Radio HW_HELPERS C++ Signal Processing Blocks
+ * \brief All C++ blocks that can be used from the HW_HELPERS GNU Radio
+ *        module are listed here or in the subcategories below.
+ *
+ */
+

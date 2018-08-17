@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<block>
+  <name>channel_switcher</name>
+  <key>argus_channel_switcher</key>
+  <category>[argus]</category>
+  <import>import argus</import>
+  <make>argus.channel_switcher($channel_list,$uhd_channel, $switching_interval)</make>
+  <!-- Make one 'param' node for every Parameter you want settable from the GUI.
+       Sub-nodes:
+       * name
+       * key (makes the value accessible as $keyname, e.g. in the make node)
+       * type -->
+  <param>
+    <name>Channel Frequencies</name>
+    <key>channel_list</key>
+    <type>real_vector</type>
+  </param>
+  <param>
+    <name>UHD Channel</name>
+    <key>uhd_channel</key>
+    <type>int</type>
+  </param>  
+  <param>
+    <name>Switching interval</name>
+    <key>switching_interval</key>
+    <type>real</type>
+  </param>
+  <source>
+    <name>usrp_ctrl</name>
+    <type>message</type>
+  </source>
+</block>

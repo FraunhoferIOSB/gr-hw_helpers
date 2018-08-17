@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<block>
+  <name>gps_info</name>
+  <key>argus_gps_info</key>
+  <category>[argus]</category>
+  <import>import argus</import>
+  <make>argus.gps_info(self, $uhd_device, $update_rate, $udp_out, $udp_port )</make>
+  <!-- Make one 'param' node for every Parameter you want settable from the GUI.
+       Sub-nodes:
+       * name
+       * key (makes the value accessible as $keyname, e.g. in the make node)
+       * type -->
+  <param>
+    <name>UHD Device Name</name>
+    <key>uhd_device</key>
+    <type>string</type>
+  </param>
+
+  <param>
+    <name>GPS update interval (s)</name>
+    <key>update_rate</key>
+    <type>real</type>
+  </param>
+  <param>
+    <name>Enable UDP output</name>
+    <key>udp_out</key>
+    <type>bool</type>
+  </param>
+
+  <param>
+    <name>UDP Port</name>
+    <key>udp_port</key>
+    <type>int</type>
+  </param>
+
+  <!-- Make one 'sink' node per input. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+
+  <!-- Make one 'source' node per output. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <source>
+    <name>gps_data</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+
+</block>
