@@ -121,112 +121,6 @@
     </param>
   </block>
   <block>
-    <key>argus_channel_switcher</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>channel_list</key>
-      <value>[100e6, 940e6,2.45e9]</value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(80, 516)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>argus_channel_switcher_0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>switching_interval</key>
-      <value>5.0</value>
-    </param>
-    <param>
-      <key>uhd_channel</key>
-      <value>-1</value>
-    </param>
-  </block>
-  <block>
-    <key>argus_gps_info</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>udp_out</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>update_rate</key>
-      <value>1.0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(384, 100)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>argus_gps_info_0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>udp_port</key>
-      <value>12345</value>
-    </param>
-    <param>
-      <key>uhd_device</key>
-      <value>uhd_usrp_source_0</value>
-    </param>
-  </block>
-  <block>
     <key>blocks_ctrlport_monitor_performance</key>
     <param>
       <key>alias</key>
@@ -341,6 +235,112 @@
     <param>
       <key>vlen</key>
       <value>1</value>
+    </param>
+  </block>
+  <block>
+    <key>hw_helpers_channel_switcher</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>channel_list</key>
+      <value>[100e6, 935e6,2.45e9]</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(152, 532)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>hw_helpers_channel_switcher_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>switching_interval</key>
+      <value>5.0</value>
+    </param>
+    <param>
+      <key>uhd_channel</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>hw_helpers_gps_info</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>udp_out</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>update_rate</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(376, 116)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>hw_helpers_gps_info_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>udp_port</key>
+      <value>12345</value>
+    </param>
+    <param>
+      <key>uhd_device</key>
+      <value>uhd_usrp_source_0</value>
     </param>
   </block>
   <block>
@@ -1782,13 +1782,13 @@
     </param>
   </block>
   <connection>
-    <source_block_id>argus_channel_switcher_0</source_block_id>
+    <source_block_id>hw_helpers_channel_switcher_0</source_block_id>
     <sink_block_id>uhd_usrp_source_0</sink_block_id>
     <source_key>usrp_ctrl</source_key>
     <sink_key>command</sink_key>
   </connection>
   <connection>
-    <source_block_id>argus_gps_info_0</source_block_id>
+    <source_block_id>hw_helpers_gps_info_0</source_block_id>
     <sink_block_id>blocks_message_debug_0</sink_block_id>
     <source_key>gps_data</source_key>
     <sink_key>print</sink_key>

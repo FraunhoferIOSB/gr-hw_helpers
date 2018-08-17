@@ -6,7 +6,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Gps Test
-# Generated: Fri Aug 17 11:02:19 2018
+# Generated: Fri Aug 17 16:15:57 2018
 # GNU Radio version: 3.7.12.0
 ##################################################
 
@@ -29,7 +29,7 @@ from gnuradio import uhd
 from gnuradio.eng_option import eng_option
 from gnuradio.filter import firdes
 from optparse import OptionParser
-import argus
+import hw_helpers
 import sip
 import sys
 import time
@@ -103,18 +103,18 @@ class gps_test(gr.top_block, Qt.QWidget):
 
 
 
+        self.hw_helpers_gps_info_0 = hw_helpers.gps_info(self, 'uhd_usrp_source_0', 1, True, 12345 )
+        self.hw_helpers_channel_switcher_0 = hw_helpers.channel_switcher(([100e6, 935e6,2.45e9]),0, 5.0)
         self.blocks_tag_debug_0 = blocks.tag_debug(gr.sizeof_gr_complex*1, '', ""); self.blocks_tag_debug_0.set_display(True)
         self.blocks_message_debug_0 = blocks.message_debug()
-        self.argus_gps_info_0 = argus.gps_info(self, 'uhd_usrp_source_0', 1.0, True, 12345 )
-        self.argus_channel_switcher_0 = argus.channel_switcher(([100e6, 940e6,2.45e9]),-1, 5.0)
 
 
 
         ##################################################
         # Connections
         ##################################################
-        self.msg_connect((self.argus_channel_switcher_0, 'usrp_ctrl'), (self.uhd_usrp_source_0, 'command'))
-        self.msg_connect((self.argus_gps_info_0, 'gps_data'), (self.blocks_message_debug_0, 'print'))
+        self.msg_connect((self.hw_helpers_channel_switcher_0, 'usrp_ctrl'), (self.uhd_usrp_source_0, 'command'))
+        self.msg_connect((self.hw_helpers_gps_info_0, 'gps_data'), (self.blocks_message_debug_0, 'print'))
         self.connect((self.uhd_usrp_source_0, 0), (self.blocks_tag_debug_0, 0))
         self.connect((self.uhd_usrp_source_0, 0), (self.qtgui_sink_x_0, 0))
 
