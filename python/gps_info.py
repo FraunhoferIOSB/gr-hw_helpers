@@ -48,11 +48,20 @@ class gps_info(gr.sync_block):
     def start(self):
         self.uhd_dev = eval("self.parent.%s"%(self.device_name))
 
-        gps_time =  self.uhd_dev.get_mboard_sensor('gps_time').to_int()
-        gps_locked =  self.uhd_dev.get_mboard_sensor('gps_locked').to_bool()
-        if gps_locked:
-            self.uhd_dev.set_time_next_pps(uhd.time_spec_t(gps_time + 1.0))
-            time.sleep(1.1)
+        while not self.uhd_dev.get_mboard_sensor('gps_locked').to_bool():
+            pass
+
+        self.uhd_dev.set_time_source('gpsdo')
+        last = self.uhd_dev.get_time_last_pps()
+        next = self.uhd_dev.get_time_last_pps()
+        while last == next:
+            time.sleep(0.05)
+            next = self.uhd_dev.get_time_last_pps()
+        time.sleep(0.1)
+        
+        self.uhd_dev.set_time_next_pps(uhd.time_spec_t(self.uhd_dev.get_mboard_sensor('gps_time').to_int() + 1))
+        time.sleep(1.1)
+        
         self.timer.start()
         return True
 
