@@ -13,25 +13,38 @@
   <param>
     <name>UHD Device Name</name>
     <key>uhd_device</key>
-    <type>string</type>
+    <value>uhd_usrp_source_0</value> 
+    <type>string</type>  
   </param>
 
   <param>
     <name>GPS update interval (s)</name>
     <key>update_rate</key>
-    <type>real</type>
+    <value>1.0</value>
+    <type>real</type>  
   </param>
   <param>
     <name>Enable UDP output</name>
     <key>udp_out</key>
-    <type>bool</type>
+    <type>enum</type>
+    <option> 
+    <name>Enabled</name>
+    <key>True</key>
+    </option>
+    <option> 
+    <name>Disabled</name>
+    <key>False</key>
+    </option>
   </param>
 
   <param>
     <name>UDP Port</name>
     <key>udp_port</key>
+    <value>12345</value>
     <type>int</type>
   </param>
+
+  <check>len($uhd_device) &gt; 0</check>
 
   <!-- Make one 'sink' node per input. Sub-nodes:
        * name (an identifier for the GUI)
@@ -49,5 +62,7 @@
     <type>message</type>
     <optional>1</optional>
   </source>
+
+  
 
 </block>
