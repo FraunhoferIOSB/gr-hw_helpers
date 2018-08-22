@@ -16,5 +16,5 @@ gpsd -nNG udp://localhost:12345
 
 ## channel_switcher
 
-This Block changes the center frequency of an UHD SDR by generating control messages ase described in the [GNURadio documentation](https://www.gnuradio.org/doc/doxygen/page_uhd.html#uhd_command_syntax_cmds). 
+This Block changes the center frequency of an UHD SDR by generating control messages as described in the [GNURadio documentation](https://www.gnuradio.org/doc/doxygen/page_uhd.html#uhd_command_syntax_cmds). 
 
