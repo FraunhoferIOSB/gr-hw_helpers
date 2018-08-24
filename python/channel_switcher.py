@@ -40,8 +40,10 @@ class channel_switcher(gr.sync_block):
         self.switching_interval = switching_interval
         self.timer = Timer(self.switching_interval, self.timer_tick)
         
+        
 
     def start(self):
+        self.count = 0
         self.timer.start()
         return True
 
@@ -49,17 +51,25 @@ class channel_switcher(gr.sync_block):
         self.timer.cancel()
         return True
 
+    def current_center_freq(self):
+        return self.freq_list[self.current_idx]
+
+
     
 
     def timer_tick(self):
+        
         cmd = pmt.make_dict()
-        cmd = pmt.dict_add(cmd, pmt.intern('chan'), pmt.to_pmt(self.uhd_channel))
-        cmd = pmt.dict_add(cmd, pmt.intern('freq'), pmt.to_pmt(self.freq_list[self.current_idx]))
+        if self.count == 0:
+            cmd = pmt.dict_add(cmd, pmt.intern('chan'), pmt.to_pmt(self.uhd_channel))
+            cmd = pmt.dict_add(cmd, pmt.intern('freq'), pmt.to_pmt(self.freq_list[self.current_idx]))
+            self.count = 10
+            self.current_idx += 1
+            self.current_idx %= len(self.freq_list)
+        else:
+                self.count -= 1
+
         cmd = pmt.dict_add(cmd, pmt.intern('tag'), pmt.from_long(1))
-
         self.message_port_pub(pmt.intern(self.msg_port_name),  cmd)
-
-        self.current_idx = self.current_idx + 1
-        self.current_idx = self.current_idx % len(self.freq_list)
-        self.timer = Timer(self.switching_interval, self.timer_tick)
+        self.timer = Timer(self.switching_interval/10.0, self.timer_tick)
         self.timer.start()
