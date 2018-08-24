@@ -62,8 +62,9 @@ class gps_info(gr.sync_block):
     
 
         if 'gps_locked' in sensor_names:
-            while not self.uhd_dev.get_mboard_sensor('gps_locked').to_bool():
-                pass
+            if not self.uhd_dev.get_mboard_sensor('gps_locked').to_bool():
+                gr.log.warn("Can't set GPS time, no fix")
+                return True
 
             self.uhd_dev.set_time_source('gpsdo')
             last = self.uhd_dev.get_time_last_pps()
@@ -98,11 +99,8 @@ class gps_info(gr.sync_block):
             gps_gprmc = self.uhd_dev.get_mboard_sensor('gps_gprmc').value
             gps_time =  self.uhd_dev.get_mboard_sensor('gps_time').to_int()
             gps_locked =  self.uhd_dev.get_mboard_sensor('gps_locked').to_bool()
-            uhd_time_set = False
             pps_seconds = self.uhd_dev.get_time_last_pps().to_ticks(1.0)
-
-            if pps_seconds == gps_time:
-                uhd_time_set = True
+            uhd_time_set = (pps_seconds == gps_time)
                 
             
             gps_data = pmt.make_dict()
